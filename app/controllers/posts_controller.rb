@@ -21,7 +21,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    # render plain: params[:post].inspect
     @post = current_user.posts.create(post_params)
 
     if @post.save
