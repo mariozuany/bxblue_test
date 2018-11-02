@@ -33,3 +33,6 @@
 # Ignore RubyMine stuff
 /.idea/
 .idea/workspace.xml
+
+# Local Env Vars
+/config/local_env.yml
