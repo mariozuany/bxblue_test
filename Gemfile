@@ -39,6 +39,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Pagination Gem 'will paginate'
 gem 'will_paginate', '~> 3.1.0'
 
+# Added Bootstrap gem
+gem 'bootstrap', '~> 4.1.3'
+
 # Postgres
 gem 'pg'
 
