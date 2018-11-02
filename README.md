@@ -8,10 +8,12 @@ This is a project exam for BxBlue admission process.
 - OpenWeather API Key - Get one at [http://openweathermap.org/]
 
 ## Setup
-1. Run `bundle install`
-1. Copy `./project_config_assets/local_env.yml` to `./config/local_enf.yml` and edit it with your credentials.
-2. Run `rake db:migrate` to setup the DB.
-3. Run `pg_restore --data-only -d memories_development -t countries /project_config_assets/countries.pg`
-4. Run `pg_restore --data-only -d memories_development -t weathers /project_config_assets/weathers.pg`
-5. `rails s` to start up the webserver.
+1. Clone this repository.
+2. Copy `./project_config_assets/local_env.yml` to `./config/local_env.yml` and edit it with your credentials.
+3. Run `rake db:setup` to create the DB.
+4. Run `rake db:migrate` to setup the DB.
+5. Run `psql memories_development < ./project_config_assets/countries.pg`
+6. Run `psql memories_development < ./project_config_assets/weathers.pg`
+7. `rails s` to start up the webserver.
 
+Or you can just `bash ./project_config_assets/setup.sh` and, then, edit the credentials at `./config/local_env.yml`
