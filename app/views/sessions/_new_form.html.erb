@@ -1,10 +1,10 @@
 <%= form_tag sessions_path do %>
 
   <%= label_tag(:email, nil, {:class => 'sr-only'}) %>
-  <%= email_field_tag(:email, params['email'], {:class => 'post_form-control', :placeholder => 'Email'}) %>
+  <%= email_field_tag(:email, params['email'], {:class => 'form-control', :placeholder => 'Email'}) %>
 
   <%= label_tag(:password, nil, {:class => 'sr-only'}) %>
-  <%= password_field_tag(:password, nil, {:class => 'post_form-control', :placeholder => 'Password'}) %>
+  <%= password_field_tag(:password, nil, {:class => 'form-control', :placeholder => 'Password'}) %>
 
   <%= submit_tag('Log in', {:class => 'btn btn-lg btn-primary btn-block mt-3'}) %>
 

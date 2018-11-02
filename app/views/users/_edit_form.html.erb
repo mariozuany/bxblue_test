@@ -7,17 +7,17 @@
 
   <div class="form-group">
     <%= f.label(:fullname, 'Full name') %><br>
-    <%= f.text_field(:fullname, :class => 'post_form-control', :placeholder => 'Your full name') %>
+    <%= f.text_field(:fullname, :class => 'form-control', :placeholder => 'Your full name') %>
   </div>
 
   <div class="form-group">
     <%= f.label(:username) %><br>
-    <%= f.text_field(:username, :class => 'post_form-control', :placeholder => 'Your username') %>
+    <%= f.text_field(:username, :class => 'form-control', :placeholder => 'Your username') %>
   </div>
 
   <div class="form-group">
     <%= f.label(:bio) %><br>
-    <%= f.text_area(:bio, :class => 'post_form-control', :placeholder => 'Your biography') %>
+    <%= f.text_area(:bio, :class => 'form-control', :placeholder => 'Your biography') %>
   </div>
 
   <%= f.submit('Save', :class => 'btn btn-primary') %>

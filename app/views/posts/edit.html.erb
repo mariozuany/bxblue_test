@@ -17,12 +17,12 @@
 
       <div class="col-md-3 mb-3">
         <%= f.label :city %>
-        <%= f.text_field(:city, {:class => 'post_form-control'}) %>
+        <%= f.text_field(:city, {:class => 'form-control'}) %>
       </div>
 
       <div class="col-md-3 mb-3">
         <%= f.label :temperature_celsius %><br>
-        <%= f.text_field(:temperature_celsius, {:class => 'post_form-control'}) %>
+        <%= f.text_field(:temperature_celsius, {:class => 'form-control'}) %>
       </div>
 
       <div class="col-md-3 mb-3">
@@ -35,13 +35,13 @@
     <div class="row mb-4">
       <div class="col-md-6 mb-3">
         <%= f.label :latitude %><br>
-        <%= f.number_field(:latitude, {:class => 'post_form-control',
+        <%= f.number_field(:latitude, {:class => 'form-control',
                                        :pattern => '[0-9]+([\.,][0-9]+)?',
                                        :step => '0.01'}) %>
       </div>
       <div class="col-md-6 mb-3">
         <%= f.label :longitude %><br>
-        <%= f.number_field(:longitude, {:class => 'post_form-control',
+        <%= f.number_field(:longitude, {:class => 'form-control',
                                         :pattern => '[0-9]+([\.,][0-9]+)?',
                                         :step => '0.01'}) %>
       </div>
@@ -50,14 +50,14 @@
     <div class="row mb-4">
       <div class="col-md-12 mb-12">
         <%= f.label :body %><br>
-        <%= f.text_area(:body, {:class => 'post_form-control'}) %>
+        <%= f.text_area(:body, {:class => 'form-control'}) %>
       </div>
     </div>
 
     <div class="row mt-4">
       <div class="col-md-3 mb-3">
         <%= f.label :post_date %>
-        <%= f.date_field(:post_date, :value => Date.today, :class => 'post_form-control') %>
+        <%= f.date_field(:post_date, :value => Date.today, :class => 'form-control') %>
       </div>
     </div>
 
