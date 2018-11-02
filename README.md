@@ -5,7 +5,7 @@ This is a project exam for BxBlue admission process.
 ## Requirements
 - Ruby and Ruby on Rails (duh)
 - Postgres
-- OpenWeather API Key - Get one at [http://openweathermap.org/]
+- OpenWeather API Key - Get one at <http://openweathermap.org/>
 
 ## Setup
 1. Clone this repository.
@@ -17,3 +17,6 @@ This is a project exam for BxBlue admission process.
 7. `rails s` to start up the webserver.
 
 Or you can just `bash ./project_config_assets/setup.sh` and, then, edit the credentials at `./config/local_env.yml`
+
+## Demo
+You play with the demo at <https://radiant-oasis-28783.herokuapp.com>
