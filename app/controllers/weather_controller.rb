@@ -2,15 +2,11 @@ class WeatherController < ApplicationController
   require 'net/http'
   require 'json'
 
-  before_action :restrict_access
+  before_action :authorize
 
   def show
-    if current_user || @access_token
-      res = get_weather(request_params[:lat], request_params[:lon])
-      render json: {status: 'Success', message: '', data: res, params: request_params}, :status => :ok
-    else
-      render json: {status: 'Unauthorized', message: 'You don\'t have the credentials.'}, :status => :unknown
-    end
+    res = get_weather(request_params[:lat], request_params[:lon])
+    render json: {status: 'Success', message: '', data: res, params: request_params}, :status => :ok
   end
 
   private
@@ -27,15 +23,6 @@ class WeatherController < ApplicationController
 
   def request_params
     params.permit(:lat, :lon)
-  end
-
-  def restrict_access
-    unless current_user
-      authenticate_or_request_with_http_token do |token|
-        ApiKey.exists?(access_token: token)
-        @access_token = token
-      end
-    end
   end
 
 end

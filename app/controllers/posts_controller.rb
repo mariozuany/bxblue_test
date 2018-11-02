@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PostsController < ApplicationController
   before_action :authorize, only: %i[new create edit update destroy]
 
@@ -23,7 +21,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    # render plain: params[:post].inspect
     @post = current_user.posts.create(post_params)
 
     if @post.save

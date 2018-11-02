@@ -1,15 +1,14 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
-
 createMessageAlert = (alert_type, message) ->
   post_form = document.forms[0]
-  post_form.insertAdjacentHTML('beforebegin', "<div class=\"alert alert-#{alert_type}\">#{message}</div>")
+  message_el = document.querySelector('.alert')
+  if message_el
+    message_el.textContent = message
+    message_el.className = "alert alert-#{alert_type}"
+  else
+    post_form.insertAdjacentHTML('beforebegin', "<div class=\"alert alert-#{alert_type}\">#{message}</div>")
 
 removeMessageAlert = () ->
-  setTimeout(() ->
-    document.querySelector('.alert').outerHTML = ''
-  , 3000)
+  document.querySelector('.alert').outerHTML = ''
 
 WeatherApiEndpoint = (lat, lon) ->
   endpoint = '/weather'
@@ -45,11 +44,13 @@ requestWeatherData = (url) ->
     if @readyState == 4 and @status == 200
       response = JSON.parse(xhttp.responseText)
 
-      if response.data.cod != '400'
+      if response.data.cod == 200
         setFormFieldsFromGeolocation(response.data)
         removeMessageAlert()
       else
-        enableWeatherFormFields()
+        createMessageAlert('warning', 'We were unable to locate you. Please fill the fields bellow manually.')
+
+      enableWeatherFormFields()
     return
 
   xhttp.open 'GET', url, true
