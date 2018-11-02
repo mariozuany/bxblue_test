@@ -1,0 +1,68 @@
+<div class="mt-5">
+  <h1 class="mb-5">Edit Post</h1>
+
+  <%= form_for :post, url: post_path(@post), method: :patch do |f| %>
+    <% if @post.errors.any? %>
+      <% @post.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger"><%= msg %></div>
+      <% end %>
+    <% end %>
+
+    <div class="row mb-4">
+      <div class="col-md-3 mb-3">
+        <%= f.label :country %>
+        <%= f.select(:country, options_for_select(Country.all.map {|p| [p.name, p.name,
+                                                                        {'data-country-code' => p.alpha_2}]}, selected: @post.country), {}, {:class => 'custom-select d-block w-100'}) %>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <%= f.label :city %>
+        <%= f.text_field(:city, {:class => 'post_form-control'}) %>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <%= f.label :temperature_celsius %><br>
+        <%= f.text_field(:temperature_celsius, {:class => 'post_form-control'}) %>
+      </div>
+
+      <div class="col-md-3 mb-3">
+        <%= f.label :weather_condition %><br>
+        <%= f.select(:weather_condition, options_for_select(Weather.all.map {|p| [p.condition, p.condition,
+                                                                                  {'data-condition' => p.condition}]}, selected: @post.weather_condition), {}, {:class => 'custom-select d-block w-100'}) %>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-6 mb-3">
+        <%= f.label :latitude %><br>
+        <%= f.number_field(:latitude, {:class => 'post_form-control',
+                                       :pattern => '[0-9]+([\.,][0-9]+)?',
+                                       :step => '0.01'}) %>
+      </div>
+      <div class="col-md-6 mb-3">
+        <%= f.label :longitude %><br>
+        <%= f.number_field(:longitude, {:class => 'post_form-control',
+                                        :pattern => '[0-9]+([\.,][0-9]+)?',
+                                        :step => '0.01'}) %>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-12 mb-12">
+        <%= f.label :body %><br>
+        <%= f.text_area(:body, {:class => 'post_form-control'}) %>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-3 mb-3">
+        <%= f.label :post_date %>
+        <%= f.date_field(:post_date, :value => Date.today, :class => 'post_form-control') %>
+      </div>
+    </div>
+
+    <hr class="mb-4">
+    <%= f.submit('Update post', {:class => 'btn btn-primary'}) %>
+
+  <% end %>
+</div>

@@ -1,0 +1,30 @@
+<article class="page-post mt-5 col-md-8">
+  <div class="post--content">
+    <%= simple_format(@post.body) %>
+  </div>
+
+  <div class="author-info">
+    <div class="font-italic">
+      Wrotted by
+      <%= @post.user.username || @post.user.email %>,
+      <%= time_ago_in_words(@post.created_at) %> ago.
+    </div>
+  </div>
+
+  <div class="meta-info">
+    <i>At </i>
+    <%= link_to @post.city, posts_path(city: @post.city) %>,
+    <%= link_to (@post.country ? @post.country : ''), posts_path(country: @post.country.to_s) %> ·
+    <%= link_to (@post.temperature_celsius ? @post.temperature_celsius.to_s + "° C" : ''), posts_path(temperature_celsius: @post.temperature_celsius.to_s) %>
+    <i> with </i>
+    <%= link_to (@post.weather_condition ? @post.weather_condition : ''), posts_path(weather_condition: @post.weather_condition.to_s) %>
+  </div>
+
+  <hr>
+
+  <% if @post.attributes['user_id'] == current_user.id %>
+    <%= link_to "Edit this post", edit_post_path(@post), :class => 'btn btn-secondary mr-3' %>
+    <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: 'Are you sure?'}, :class => 'btn btn-outline-danger btn-sm' %>
+  <% end %>
+</article>
+

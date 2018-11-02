@@ -1,0 +1,20 @@
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+  <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to "Memories", home_path %></h5>
+
+  <nav class="my-2 my-md-0 mr-md-3">
+    <a class="p-2 text-dark" href="#">About</a>
+    <a class="p-2 text-dark" href="#">Terms</a>
+    <% if current_user %>
+      <%= link_to 'Your Account', users_path %>
+      <%= link_to "Create New Post", new_post_path, :class => 'btn btn-primary ml-3 mr-2' %>
+    <% end %>
+  </nav>
+
+  <% if current_user %>
+    <%= link_to "Logout", session_path('current'), method: 'delete', :class => 'btn btn-outline-danger btn-sm' %>
+  <% else %>
+    <%= link_to "Sign up", signup_path, :class => 'btn btn-outline-primary mr-3' %>
+    <%= link_to "Log in", login_path, :class => 'btn btn-primary' %>
+  <% end %>
+
+</div>

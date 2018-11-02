@@ -1,0 +1,82 @@
+<div class="mt-5">
+  <h1 class="mb-5">New Post</h1>
+
+  <%= form_for :post, url: posts_path do |f| %>
+    <% if @post.errors.any? %>
+      <% @post.errors.full_messages.each do |msg| %>
+        <div class="alert alert-danger"><%= msg %></div>
+      <% end %>
+    <% end %>
+
+    <div class="location-weather">
+      <div class="row mb-4">
+        <div class="col-md-3 mb-3">
+          <%= f.label :country %>
+          <%= f.select(:country, options_for_select(
+              Country.all.map {|p| [p.name, p.name, {'data-country-code' => p.alpha_2}]}),
+                       {:prompt => 'Select a country'},
+                       {:disabled => true, :class => 'custom-select d-block w-100'}) %>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <%= f.label :city %>
+          <%= f.text_field(:city, {:class => 'form-control', :disabled => true }) %>
+        </div>
+
+
+        <div class="col-md-3 mb-3">
+          <%= f.label :temperature_celsius %>
+          <%= f.number_field(:temperature_celsius, {:class => 'form-control',
+                                                    :pattern => '[0-9]+([\.,][0-9]+)?',
+                                                    :step => '0.01',
+                                                    :disabled => true}) %>
+        </div>
+
+        <div class="col-md-3 mb-3">
+          <%= f.label :weather_condition %>
+          <%= f.select(:weather_condition, options_for_select(
+              Weather.all.map {|p| [p.condition, p.condition,{'data-condition' => p.condition}]}),
+                       {:prompt => 'Select a weather'},
+                       {:disabled => true, :class => 'custom-select d-block w-100'}) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="lat-lon">
+      <div class="row mb-4">
+        <div class="col-md-6 mb-3">
+          <%= f.label :latitude %><br>
+          <%= f.number_field(:latitude, {:class => 'form-control',
+                                         :pattern => '[0-9]+([\.,][0-9]+)?',
+                                         :step => '0.01',
+                                         :disabled => true}) %>
+        </div>
+        <div class="col-md-6 mb-3">
+          <%= f.label :longitude %><br>
+          <%= f.number_field(:longitude, {:class => 'form-control',
+                                          :pattern => '[0-9]+([\.,][0-9]+)?',
+                                          :step => '0.01',
+                                          :disabled => true}) %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-md-12 mb-12">
+        <%= f.label :body, 'Post' %><br>
+        <%= f.text_area(:body, {:class => 'form-control', :placeholder => 'Type your memory here.'}) %>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-3 mb-3">
+        <%= f.label :post_date %>
+        <%= f.date_field(:post_date, :value => Date.today, :class => 'form-control') %>
+      </div>
+    </div>
+
+    <hr class="mb-4">
+    <%= f.submit('Publish', {:class => 'btn btn-primary'}) %>
+
+  <% end %>
+</div>
