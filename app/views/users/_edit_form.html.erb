@@ -1,0 +1,24 @@
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <% @user.errors.full_messages.each do |msg| %>
+      <div class="alert alert-danger"><%= msg %></div>
+    <% end %>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label(:fullname, 'Full name') %><br>
+    <%= f.text_field(:fullname, :class => 'post_form-control', :placeholder => 'Your full name') %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:username) %><br>
+    <%= f.text_field(:username, :class => 'post_form-control', :placeholder => 'Your username') %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label(:bio) %><br>
+    <%= f.text_area(:bio, :class => 'post_form-control', :placeholder => 'Your biography') %>
+  </div>
+
+  <%= f.submit('Save', :class => 'btn btn-primary') %>
+<% end %>

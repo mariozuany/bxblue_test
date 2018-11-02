@@ -1,0 +1,34 @@
+<div class="wall mt-5 col-md-8">
+  <h1>Memories Wall</h1>
+
+  <% if @posts.present? %>
+    <% @posts.each do |post| %>
+      <div class="well post">
+        <h2 class="post-excerpt"><%= truncate(post.body, :length => 120) %></h2>
+        <div class="author-info">
+          <small class="font-italic">
+            Wrotted by
+            <%= post.user.username || post.user.email %>,
+            <%= time_ago_in_words(post.created_at) %> ago.
+          </small>
+        </div>
+        <div class="meta-info">
+          <i>At </i>
+          <%= link_to post.city, posts_path(city: post.city) %>,
+          <%= link_to (post.country ? post.country : ''), posts_path(country: post.country.to_s) %> ·
+          <%= link_to (post.temperature_celsius ? post.temperature_celsius.to_s + "° C" : ''), posts_path(temperature_celsius: post.temperature_celsius.to_s) %>
+          <i> with </i>
+          <%= link_to (post.weather_condition ? post.weather_condition : ''), posts_path(weather_condition: post.weather_condition.to_s) %>
+        </div>
+        <%= link_to "Continue reading...", post_path(post), :class => '' %>
+      </div>
+    <% end %>
+
+    <%= will_paginate @posts %>
+    <hr>
+
+  <% else %>
+    <h3>Nobody posted yet. <%= link_to 'Be the first!', new_user_path, :class => 'font-italic' %></h3>
+  <% end %>
+</div>
+

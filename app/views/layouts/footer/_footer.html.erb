@@ -1,0 +1,11 @@
+<footer class="container mt-5">
+  <p class="float-right"><a href="#">Back to top</a></p>
+  <p>Memories © <%= Time.current.year %> · <a href="#">About</a> · <a href="#">Terms</a> ·
+    <% if current_user %>
+      <%= link_to 'Your Account', users_path %>
+    <% else %>
+      <%= link_to "Sign up", signup_path, :class => '' %> ·
+      <%= link_to "Log in", login_path, :class => '' %>
+    <% end %>
+  </p>
+</footer>

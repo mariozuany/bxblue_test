@@ -1,0 +1,18 @@
+<% if @user.fullname.present? %>
+  <h2><%= @user.fullname %></h2>
+<% end %>
+
+<% if @user.username.present? %>
+  <h4 class="mb-3"><%= @user.username %></h4>
+<% end %>
+
+<% if @user.bio.present? %>
+  <p class="font-italic"><%= @user.bio %></p>
+<% end %>
+
+<% if @user.fullname.blank? || @user.username.blank? || @user.bio.blank? %>
+  <p class="font-italic">Seems like you don't have completed your profile yet.</p>
+  <%= link_to "Complete your profile", edit_user_path(@user), :class => 'btn btn-primary' %>
+<% else %>
+  <%= link_to "Edit profile", edit_user_path(@user), :class => 'btn btn-primary mt-5' %>
+<% end %>
